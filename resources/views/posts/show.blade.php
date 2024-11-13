@@ -127,6 +127,26 @@
                 praesentium numquam possimus quaerat doloribus!
                 Praesentium, provident accusantium.
             </p>--}}
+            <!-- Mostrar el resumen del post -->
+            <div class="mt-4">
+                <strong>Summary: </strong>{{ $post->summary }}
+            </div>
+
+            <!-- Mostrar el slug del post -->
+            <div class="mt-4">
+                <strong>Slug: </strong>{{ $post->slug }}
+            </div>
+
+            <!-- Mostrar el estado del post -->
+            <div class="mt-4">
+                <strong>Status: </strong>{{ ucfirst($post->status) }}
+            </div>
+
+            <!-- Mostrar el tiempo de lectura del post -->
+            <div class="mt-4">
+                <strong>Reading Time: </strong>{{ $post->reading_time }} min
+            </div>
         </div>
+
     </article>
 </x-blog-layout>
