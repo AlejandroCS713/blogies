@@ -83,6 +83,25 @@
                             </span>
                         </div>
                     </div>--}}
+                    <!-- Mostrar el resumen del post -->
+                    <div class="flex-1 space-y-1 p-2">
+                        <strong>Summary: </strong>{{ $post->summary }}
+                    </div>
+
+                    <!-- Mostrar el slug del post -->
+                    <div class="flex-1 space-y-1 p-2">
+                        <strong>Slug: </strong>{{ $post->slug }}
+                    </div>
+
+                    <!-- Mostrar el estado del post -->
+                    <div class="flex-1 space-y-1 p-2">
+                        <strong>Status: </strong>{{ ucfirst($post->status) }}
+                    </div>
+
+                    <!-- Mostrar el tiempo de lectura del post -->
+                    <div class="flex-1 space-y-1 p-2">
+                        <strong>Reading Time: </strong>{{ $post->reading_time }} min
+                    </div>
                 </article>
             @endforeach
         </div>
