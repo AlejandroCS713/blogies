@@ -70,11 +70,31 @@ class PostController extends Controller
 
     public function update(UpdatePostRequest $request, Post $post)
     {
-        $post->update($request->validated());
+        $validated = $request->validated();
+
+
+        $title = $validated['title'];
+        $body = $validated['body'];
+
+        $slug = \Str::slug($title);
+        $summary = substr($body, 0, 50);
+        $readingTime = ceil(str_word_count($body) / 200);
+
+
+        $post->update(attributes: [
+            'title' => $title,
+            'body' => $body,
+            'slug' => $slug,
+            'summary' => $summary,
+            'status' => $validated['status'],
+            'reading_time' => $readingTime,
+            'published_at' => $validated['published_at'] ?? null,
+        ]);
 
         return to_route('posts.show', $post)
             ->with('status', 'Post updated successfully');
     }
+
 
     public function destroy(Post $post)
     {

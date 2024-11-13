@@ -31,20 +31,6 @@
     <x-input-error :messages="$errors->get('status')" class="mt-2" />
 </div>
 
-<!-- Nuevo campo: Reading Time -->
-<div>
-    <x-input-label for="reading_time" :value="__('Reading Time (minutes)')" />
-    <x-text-input id="reading_time"
-                  name="reading_time"
-                  type="number"
-                  value="{{ old('reading_time', $post->reading_time) }}"
-                  class="block w-full mt-1"
-                  readonly
-    />
-    <x-input-error :messages="$errors->get('reading_time')" class="mt-2" />
-</div>
-
-
 <div>
     <x-input-label for="published_at" :value="__('Published at')" />
     <x-text-input id="published_at"
