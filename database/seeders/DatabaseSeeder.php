@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345678')
         ]);
 
+
         User::factory(20)->create()->each(function ($user) {
 
             // Asignación aleatoria de roles usando random_int(0, 9)
@@ -61,23 +62,25 @@ class DatabaseSeeder extends Seeder
                 $description = 'Solo puede acceder al listado de los posts y a cada uno de ellos de manera individual.';
             }
 
-            // Asignar el rol, display_name y description al usuario
+            // Crear o obtener el rol según la asignación
             $role = Role::firstOrCreate([
-                'name' => $roleName
+                'name' => $roleName,
             ], [
                 'display_name' => $displayName,
                 'description' => $description,
-                'user_id' => $user->id,
             ]);
 
-            // Asociar el rol al usuario
-            $user->roles()->attach($role);
+            // Asignar el rol al usuario
+            $user->role()->associate($role);  // Asociar el rol al usuario
+            $user->save(); // Guardar al usuario con el rol asignado
 
             // Crear posts para cada usuario
             $user->posts()->saveMany(
-                Post::factory(10)->make() // Genera 10 posts por usuario
+                Post::factory(10)->make() // Generar 10 posts por usuario
             );
         });
+
+
 
         /*foreach ($users as $user) {
             $user->posts()->saveMany(
